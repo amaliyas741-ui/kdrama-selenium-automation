@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>K-Zone | אתר המעריצים לדרמות קוריאניות</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; text-align: center; padding: 50px; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; width: 300px; }
+        button { background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 15px; }
+        button.added { background-color: #4caf50; }
+    </style>
+</head>
+<body>
+
+    <h1>ברוכים הבאים ל-K-Zone! 🇰🇷</h1>
+    <p>אתר המעריצים הרשמי שלך לדרמות קוריאניות.</p>
+
+    <div class="card">
+        <h3>Goblin (שומר נפשות)</h3>
+        <p>ז'אנר: פנטזיה, רומנטיקה</p>
+        <button id="watchlist-btn" onclick="toggleWatchlist()">הוסף לרשימת הצפייה ➕</button>
+    </div>
+
+    <script>
+        function toggleWatchlist() {
+            var btn = document.getElementById("watchlist-btn");
+            if (btn.innerText.includes("➕")) {
+                btn.innerText = "התווסף לרשימה! ✓";
+                btn.className = "added";
+            } else {
+                btn.innerText = "הוסף לרשימת הצפייה ➕";
+                btn.className = "";
+            }
+        }
+    </script>
+
+</body>
+</html>

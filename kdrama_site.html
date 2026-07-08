@@ -2,37 +2,59 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>K-Zone | אתר המעריצים לדרמות קוריאניות</title>
+    <title>K-Zone - אתר המעריצים שלי</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; text-align: center; padding: 50px; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; width: 300px; }
-        button { background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 15px; }
-        button.added { background-color: #4caf50; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; text-align: center; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; margin: 20px auto; }
+        button { background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button.added { background-color: #2ecc71; }
+        input[type="text"] { padding: 10px; width: 60px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; margin-left: 10px; }
+        .submit-btn { background-color: #3498db; color: white; }
+        ul { list-style-type: none; padding: 0; text-align: right; max-width: 200px; margin: 20px auto; }
+        li { background: #eee; margin: 5px 0; padding: 10px; border-radius: 5px; }
     </style>
 </head>
 <body>
 
-    <h1>ברוכים הבאים ל-K-Zone! 🇰🇷</h1>
-    <p>אתר המעריצים הרשמי שלך לדרמות קוריאניות.</p>
+    <h1>ברוכים הבאים ל-K-Zone! 🌟</h1>
 
     <div class="card">
-        <h3>Goblin (שומר נפשות)</h3>
+        <h2>סדרת השבוע: Goblin</h2>
         <p>ז'אנר: פנטזיה, רומנטיקה</p>
-        <button id="watchlist-btn" onclick="toggleWatchlist()">הוסף לרשימת הצפייה ➕</button>
+        <button id="watchlist-btn">הוסף לרשימת הצפייה</button>
+    </div>
+
+    <div class="card">
+        <h3>הוסיפי דרמה מומלצת:</h3>
+        <input type="text" id="new-drama-input" placeholder="למשל: Crash Landing on You">
+        <button id="add-drama-btn" class="submit-btn">הוסף לרשימה</button>
+
+        <ul id="drama-list">
+            <li>Goblin</li>
+        </ul>
     </div>
 
     <script>
-        function toggleWatchlist() {
-            var btn = document.getElementById("watchlist-btn");
-            if (btn.innerText.includes("➕")) {
-                btn.innerText = "התווסף לרשימה! ✓";
-                btn.className = "added";
-            } else {
-                btn.innerText = "הוסף לרשימת הצפייה ➕";
-                btn.className = "";
-            }
-        }
-    </script>
+        // קוד ה-Watchlist המקורי
+        const btn = document.getElementById('watchlist-btn');
+        btn.addEventListener('click', () => {
+            btn.textContent = 'התוווסיף לרשימה! ✓';
+            btn.classList.add('added');
+        });
 
+        // 🌟 קוד חדש: הוספה דינמית לרשימה
+        const addBtn = document.getElementById('add-drama-btn');
+        const input = document.getElementById('new-drama-input');
+        const list = document.getElementById('drama-list');
+
+        addBtn.addEventListener('click', () => {
+            if (input.value.trim() !== '') {
+                const li = document.createElement('li');
+                li.textContent = input.value;
+                list.appendChild(li);
+                input.value = ''; // ניקוי התיבה
+            }
+        });
+    </script>
 </body>
 </html>

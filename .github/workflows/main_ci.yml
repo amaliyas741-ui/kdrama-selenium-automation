@@ -19,15 +19,15 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Install uv and dependencies
-      run: |
-        curl -LsSf https://astral.sh/uv/install.sh | sh
-        $HOME/.local/share/uv/tools/uv sync || $HOME/.local/bin/uv sync || uv sync
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+
+    - name: Install dependencies
+      run: uv sync
 
     - name: Run Pytest Automation Suite
       env:
         JIRA_URL: ${{ secrets.JIRA_URL }}
         JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
         JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
-      run: |
-        $HOME/.local/bin/uv run pytest || uv run pytest
+      run: uv run --with pytest pytest

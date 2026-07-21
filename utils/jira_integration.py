@@ -1,13 +1,19 @@
+import os
 from jira import JIRA
 
-JIRA_URL = "https://amaliya-kdrama.atlassian.net"
-JIRA_EMAIL = "amaliyas741@gmail.com"  # המייל של החשבון שלך
-JIRA_TOKEN = "ATATT3xFfGF0w8BTXJh5pVHTFmffjNHlGfhgCJIQzbldRtbjfizEKr4KrfBYkB67PvlbU_sr0eXY27CftbzQHBCxS52AETq5R7j2utW17H07XRBDBH5bvy4mEl5xXKuZiZDLZxqOt9xDgvj71HiW8qxH_TkugX2QOEaiV_J9aJ9OpdD35d3VTDk=384C5B38"
+# קריאת הנתונים ממשתני הסביבה (אם לא קיימים, ישתמש בברירת המחדל)
+JIRA_URL = os.getenv("JIRA_URL", "https://amaliya-kdrama.atlassian.net")
+JIRA_EMAIL = os.getenv("JIRA_EMAIL", "amaliyas741@gmail.com")
+JIRA_TOKEN = os.getenv("JIRA_TOKEN")  # מגיע בבטחה מ-GitHub Secrets או מהסביבה המקומית
 PROJECT_KEY = "SCRUM"
 
 
 def create_jira_issue(summary, description):
     """פונקציה המייצרת כרטיס באג אוטומטי ב-Jira כאשר טסט נכשל"""
+    if not JIRA_TOKEN:
+        print("⚠️ אזהרה: JIRA_TOKEN אינו מוגדר במערכת. לא ניתן לפתוח באג ב-Jira.")
+        return None
+
     try:
         jira_options = {'server': JIRA_URL}
         jira = JIRA(options=jira_options, basic_auth=(JIRA_EMAIL, JIRA_TOKEN))

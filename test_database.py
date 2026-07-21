@@ -1,7 +1,7 @@
 import time
 from db_handler import insert_drama, get_drama_by_name, mark_drama_as_watched
 
-# יצירת מזהה ייחודי מבוסס זמן (למשל: 151930)
+# יצירת מזהה ייחודי מבוסס זמן
 timestamp = time.strftime("%H%M%S")
 
 def test_insert_new_drama_to_db():
@@ -41,5 +41,5 @@ def test_update_drama_watched_status():
 
     updated_data = get_drama_by_name(drama_name)
 
-    assert updated_data is not None, "הסדרה לאמצאה ב-DB"
+    assert updated_data is not None, "הסדרה לא נמצאה ב-DB"
     assert updated_data['watched'] == 1, f"הסטטוס ב-DB הוא {updated_data['watched']} במקום 1"

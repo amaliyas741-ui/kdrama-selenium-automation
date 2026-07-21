@@ -22,7 +22,7 @@ jobs:
     - name: Install uv and dependencies
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-        uv sync
+        $HOME/.local/share/uv/tools/uv sync || $HOME/.local/bin/uv sync || uv sync
 
     - name: Run Pytest Automation Suite
       env:
@@ -30,4 +30,4 @@ jobs:
         JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
         JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
       run: |
-        uv run pytest
+        $HOME/.local/bin/uv run pytest || uv run pytest
